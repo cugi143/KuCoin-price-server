@@ -1,0 +1,121 @@
+{
+  "openapi" : "3.0.0",
+  "info" : {
+    "title" : "CryptoCurrency API",
+    "description" : "REST API for retrieving cryptocurrency information and managing price history.",
+    "version" : "1.0.0"
+  },
+  "paths" : {
+    "/price/{currency}" : {
+      "get" : {
+        "summary" : "Get Price of a Currency",
+        "description" : "Get the last \"bid\" price from the KuCoin exchange for the specified currency.",
+        "parameters" : [ {
+          "name" : "currency",
+          "in" : "path",
+          "description" : "The cryptocurrency symbol (e.g., BTC).",
+          "required" : true,
+          "schema" : {
+            "type" : "string"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "Successful response",
+            "content" : {
+              "application/json" : {
+                "example" : {
+                  "currency" : "BTC",
+                  "price" : 100.0
+                }
+              }
+            }
+          },
+          "400" : {
+            "description" : "Bad Request",
+            "content" : {
+              "application/json" : {
+                "example" : {
+                  "error" : "Currency not found"
+                }
+              }
+            }
+          },
+          "500" : {
+            "description" : "Internal Server Error",
+            "content" : {
+              "application/json" : {
+                "example" : {
+                  "error" : "Internal Server Error: Unexpected error"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/price/history" : {
+      "get" : {
+        "summary" : "Get Price History",
+        "description" : "Get paginated price history from the database.",
+        "parameters" : [ {
+          "name" : "page",
+          "in" : "query",
+          "description" : "Page number for pagination (default is 1).",
+          "required" : false,
+          "schema" : {
+            "type" : "integer",
+            "default" : 1
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "Successful response",
+            "content" : {
+              "application/json" : {
+                "example" : [ {
+                  "currency" : "BTC",
+                  "price" : 100.0,
+                  "date" : "2023-12-31T12:34:56"
+                } ]
+              }
+            }
+          },
+          "500" : {
+            "description" : "Internal Server Error",
+            "content" : {
+              "application/json" : {
+                "example" : {
+                  "error" : "Internal Server Error: Unexpected error"
+                }
+              }
+            }
+          }
+        }
+      },
+      "delete" : {
+        "summary" : "Delete Price History",
+        "description" : "Delete all records from the database.",
+        "responses" : {
+          "204" : {
+            "description" : "No Content"
+          },
+          "500" : {
+            "description" : "Internal Server Error",
+            "content" : {
+              "application/json" : {
+                "example" : {
+                  "error" : "Internal Server Error: Unexpected error"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "servers" : [ {
+    "description" : "SwaggerHub API Auto Mocking",
+    "url" : "https://virtserver.swaggerhub.com/cugi143/KuCoin-price-server/1.0.0"
+  } ]
+}
