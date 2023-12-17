@@ -1,0 +1,78 @@
+{
+	"info": {
+		"_postman_id": "XXXXXXXX-XXXX-XXXX-XXXX-XXXXXXXXXXXX",
+		"name": "CryptoApp Endpoints",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "GET /price/{currency}",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/price/BTC",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"price",
+						"BTC"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GET /price/history?page={page}",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/price/history?page=1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"price",
+						"history"
+					],
+					"query": [
+						{
+							"key": "page",
+							"value": "1"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "DELETE /price/history",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/price/history",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"price",
+						"history"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"protocolProfileBehavior": {
+		"disable": false
+	}
+}
